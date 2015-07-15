@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78094430249113FA9C7268CB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16447B5788BDE68E53B232A6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E877B1B555C9B00580978 /* AppDelegate.swift */; };
 		D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D83E877D1B555C9B00580978 /* Nine_Worlds.xcdatamodeld */; };
 		D83E87811B555C9B00580978 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87801B555C9B00580978 /* MasterViewController.swift */; };
@@ -15,6 +16,12 @@
 		D83E87881B555C9B00580978 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D83E87871B555C9B00580978 /* Images.xcassets */; };
 		D83E878B1B555C9B00580978 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D83E87891B555C9B00580978 /* LaunchScreen.xib */; };
 		D83E87971B555C9B00580978 /* Nine_WorldsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87961B555C9B00580978 /* Nine_WorldsTests.swift */; };
+		D83E87A41B555F3000580978 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87A31B555F3000580978 /* Networking.swift */; };
+		D83E87AB1B5562E300580978 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87A71B5562E300580978 /* Person.swift */; };
+		D83E87AC1B5562E300580978 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87A81B5562E300580978 /* Location.swift */; };
+		D83E87AD1B5562E300580978 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87A91B5562E300580978 /* Tag.swift */; };
+		D83E87AE1B5562E300580978 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87AA1B5562E300580978 /* Program.swift */; };
+		D83E87B01B556DD700580978 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87AF1B556DD700580978 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		16447B5788BDE68E53B232A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		C975E107168147A680E81EDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D83E87761B555C9B00580978 /* Nine Worlds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nine Worlds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83E877A1B555C9B00580978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83E877B1B555C9B00580978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +50,12 @@
 		D83E87901B555C9B00580978 /* Nine WorldsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nine WorldsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83E87951B555C9B00580978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83E87961B555C9B00580978 /* Nine_WorldsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nine_WorldsTests.swift; sourceTree = "<group>"; };
+		D83E87A31B555F3000580978 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		D83E87A71B5562E300580978 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D83E87A81B5562E300580978 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		D83E87A91B5562E300580978 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		D83E87AA1B5562E300580978 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
+		D83E87AF1B556DD700580978 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78094430249113FA9C7268CB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +77,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21819F3C682B2466EE2107F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16447B5788BDE68E53B232A6 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B863F67BE98DACCCDD7060DB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C975E107168147A680E81EDB /* Pods.debug.xcconfig */,
+				7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D83E876D1B555C9B00580978 = {
 			isa = PBXGroup;
 			children = (
 				D83E87781B555C9B00580978 /* Nine Worlds */,
 				D83E87931B555C9B00580978 /* Nine WorldsTests */,
 				D83E87771B555C9B00580978 /* Products */,
+				B863F67BE98DACCCDD7060DB /* Pods */,
+				21819F3C682B2466EE2107F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,12 +117,12 @@
 		D83E87781B555C9B00580978 /* Nine Worlds */ = {
 			isa = PBXGroup;
 			children = (
+				D83E87A51B55609500580978 /* Controllers */,
+				D83E87A61B5562D600580978 /* Models */,
+				D83E87A21B555E1700580978 /* Networking */,
+				D83E87A11B555DE200580978 /* Resources */,
+				D83E87A01B555DD900580978 /* User Interface */,
 				D83E877B1B555C9B00580978 /* AppDelegate.swift */,
-				D83E87801B555C9B00580978 /* MasterViewController.swift */,
-				D83E87821B555C9B00580978 /* DetailViewController.swift */,
-				D83E87841B555C9B00580978 /* Main.storyboard */,
-				D83E87871B555C9B00580978 /* Images.xcassets */,
-				D83E87891B555C9B00580978 /* LaunchScreen.xib */,
 				D83E877D1B555C9B00580978 /* Nine_Worlds.xcdatamodeld */,
 				D83E87791B555C9B00580978 /* Supporting Files */,
 			);
@@ -118,6 +154,52 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D83E87A01B555DD900580978 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				D83E87841B555C9B00580978 /* Main.storyboard */,
+				D83E87891B555C9B00580978 /* LaunchScreen.xib */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
+		D83E87A11B555DE200580978 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D83E87871B555C9B00580978 /* Images.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D83E87A21B555E1700580978 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				D83E87AF1B556DD700580978 /* DataManager.swift */,
+				D83E87A31B555F3000580978 /* Networking.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		D83E87A51B55609500580978 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D83E87801B555C9B00580978 /* MasterViewController.swift */,
+				D83E87821B555C9B00580978 /* DetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D83E87A61B5562D600580978 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D83E87A81B5562E300580978 /* Location.swift */,
+				D83E87A71B5562E300580978 /* Person.swift */,
+				D83E87AA1B5562E300580978 /* Program.swift */,
+				D83E87A91B5562E300580978 /* Tag.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D83E879A1B555C9B00580978 /* Build configuration list for PBXNativeTarget "Nine Worlds" */;
 			buildPhases = (
+				E0F011B4AF8361B788C42006 /* Check Pods Manifest.lock */,
 				D83E87721B555C9B00580978 /* Sources */,
 				D83E87731B555C9B00580978 /* Frameworks */,
 				D83E87741B555C9B00580978 /* Resources */,
+				9A2BF4EC4EF9FAA673660AC0 /* Embed Pods Frameworks */,
+				63F132D09CD0CD05AB3AE1DB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,15 +298,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		63F132D09CD0CD05AB3AE1DB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A2BF4EC4EF9FAA673660AC0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0F011B4AF8361B788C42006 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D83E87721B555C9B00580978 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D83E87AD1B5562E300580978 /* Tag.swift in Sources */,
+				D83E87B01B556DD700580978 /* DataManager.swift in Sources */,
+				D83E87AB1B5562E300580978 /* Person.swift in Sources */,
 				D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */,
+				D83E87A41B555F3000580978 /* Networking.swift in Sources */,
 				D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */,
+				D83E87AE1B5562E300580978 /* Program.swift in Sources */,
 				D83E87811B555C9B00580978 /* MasterViewController.swift in Sources */,
 				D83E87831B555C9B00580978 /* DetailViewController.swift in Sources */,
+				D83E87AC1B5562E300580978 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +487,7 @@
 		};
 		D83E879B1B555C9B00580978 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C975E107168147A680E81EDB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Nine Worlds/Info.plist";
@@ -358,6 +498,7 @@
 		};
 		D83E879C1B555C9B00580978 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Nine Worlds/Info.plist";
@@ -419,6 +560,7 @@
 				D83E879C1B555C9B00580978 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D83E879D1B555C9B00580978 /* Build configuration list for PBXNativeTarget "Nine WorldsTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +569,7 @@
 				D83E879F1B555C9B00580978 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
