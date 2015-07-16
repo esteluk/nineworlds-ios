@@ -22,6 +22,9 @@
 		D83E87AD1B5562E300580978 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87A91B5562E300580978 /* Tag.swift */; };
 		D83E87AE1B5562E300580978 /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87AA1B5562E300580978 /* Program.swift */; };
 		D83E87B01B556DD700580978 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87AF1B556DD700580978 /* DataManager.swift */; };
+		D8B46B2D1B585F8F006E8E45 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B2C1B585F8F006E8E45 /* HTMLNode.swift */; };
+		D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B2E1B585FB2006E8E45 /* HTMLParser.swift */; };
+		D8B46B321B586037006E8E45 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B46B311B586037006E8E45 /* libxml2.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,10 @@
 		D83E87A91B5562E300580978 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		D83E87AA1B5562E300580978 /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		D83E87AF1B556DD700580978 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D8B46B2C1B585F8F006E8E45 /* HTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLNode.swift; sourceTree = "<group>"; };
+		D8B46B2E1B585FB2006E8E45 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
+		D8B46B301B585FD3006E8E45 /* Swift-HTML-Parser-Bridging-File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-File.h"; sourceTree = "<group>"; };
+		D8B46B311B586037006E8E45 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B46B321B586037006E8E45 /* libxml2.dylib in Frameworks */,
 				78094430249113FA9C7268CB /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +88,7 @@
 		21819F3C682B2466EE2107F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8B46B311B586037006E8E45 /* libxml2.dylib */,
 				16447B5788BDE68E53B232A6 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -117,6 +126,7 @@
 		D83E87781B555C9B00580978 /* Nine Worlds */ = {
 			isa = PBXGroup;
 			children = (
+				D8B46B2A1B585F77006E8E45 /* Utils */,
 				D83E87A51B55609500580978 /* Controllers */,
 				D83E87A61B5562D600580978 /* Models */,
 				D83E87A21B555E1700580978 /* Networking */,
@@ -198,6 +208,24 @@
 				D83E87A91B5562E300580978 /* Tag.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		D8B46B2A1B585F77006E8E45 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D8B46B2B1B585F7D006E8E45 /* HTML */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		D8B46B2B1B585F7D006E8E45 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				D8B46B2C1B585F8F006E8E45 /* HTMLNode.swift */,
+				D8B46B2E1B585FB2006E8E45 /* HTMLParser.swift */,
+				D8B46B301B585FD3006E8E45 /* Swift-HTML-Parser-Bridging-File.h */,
+			);
+			name = HTML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,8 +385,10 @@
 				D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */,
 				D83E87A41B555F3000580978 /* Networking.swift in Sources */,
 				D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */,
+				D8B46B2D1B585F8F006E8E45 /* HTMLNode.swift in Sources */,
 				D83E87AE1B5562E300580978 /* Program.swift in Sources */,
 				D83E87811B555C9B00580978 /* MasterViewController.swift in Sources */,
+				D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */,
 				D83E87831B555C9B00580978 /* DetailViewController.swift in Sources */,
 				D83E87AC1B5562E300580978 /* Location.swift in Sources */,
 			);
@@ -490,9 +520,15 @@
 			baseConfigurationReference = C975E107168147A680E81EDB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Nine Worlds/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Nine Worlds/Swift-HTML-Parser-Bridging-File.h";
 			};
 			name = Debug;
 		};
@@ -501,9 +537,15 @@
 			baseConfigurationReference = 7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = "Nine Worlds/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Nine Worlds/Swift-HTML-Parser-Bridging-File.h";
 			};
 			name = Release;
 		};

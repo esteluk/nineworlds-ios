@@ -6,11 +6,12 @@
 //
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 class Program: NSManagedObject {
     
+    @NSManaged var attending: Bool
     @NSManaged var startDate: NSDate
     @NSManaged var title: String
     @NSManaged var id: NSNumber
@@ -19,6 +20,20 @@ class Program: NSManagedObject {
     @NSManaged var people: NSOrderedSet
     @NSManaged var tags: NSOrderedSet
     @NSManaged var location: Location
+    
+    @NSManaged var matureContent: Bool
+    @NSManaged var eighteenPlus: Bool
+    @NSManaged var sixteenPlus: Bool
+    @NSManaged var kidFriendly: Bool
+    @NSManaged var ticketed: Bool
+    
+    var attributedTitle : NSAttributedString? {
+        return NSAttributedString(data: title.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType], documentAttributes: nil, error: nil);
+    }
+    
+    var attributedDescription : NSAttributedString? {
+        return NSAttributedString(data: programDescription.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType], documentAttributes: nil, error: nil);
+    }
     
     func loadFromDictionary(dictionary : NSDictionary, manager: DataManager) -> Program {
         
@@ -56,6 +71,34 @@ class Program: NSManagedObject {
                 l.addProgramObject(self)
                 self.location = l
             }
+        }
+        
+        var error : NSError?
+        var parser = HTMLParser(html: self.title, error: &error)
+        if error != nil {
+            print(error)
+        }
+        
+        let body = parser.body
+        if let spanNode = body?.findChildTag("span") {
+            switch spanNode.className {
+            case "flag_warning":
+                self.matureContent = true
+                self.sixteenPlus = spanNode.contents == "16+"
+                self.eighteenPlus = spanNode.contents == "18+"
+            case "flag_notice":
+                self.kidFriendly = spanNode.contents == "Kid friendly!"
+            case "flag_caution":
+                self.ticketed = spanNode.contents == "Ticketed"
+            default:
+                // Do nothing
+                print()
+            }
+            
+            // remove the span from the thing
+            let range = self.title.rangeOfString("<span", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale())
+            self.title = self.title.substringToIndex(range!.startIndex)
+            
         }
         
         return self
