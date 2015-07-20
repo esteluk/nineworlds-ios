@@ -13,6 +13,8 @@ class Program: NSManagedObject {
     
     @NSManaged var attending: Bool
     @NSManaged var startDate: NSDate
+    @NSManaged var daySection: NSNumber
+    @NSManaged var daySectionTitle: String
     @NSManaged var title: String
     @NSManaged var id: NSNumber
     @NSManaged var length: NSNumber
@@ -101,6 +103,11 @@ class Program: NSManagedObject {
             
         }
         
+        // Calculate the day
+        let calendar = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: self.startDate)
+        self.daySection = calendar.day
+        self.daySectionTitle = Program.sectionDateFormatter.stringFromDate(self.startDate)
+        
         return self
     }
     
@@ -111,6 +118,17 @@ class Program: NSManagedObject {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 return dateFormatter
                 }()
+        }
+        return Static.instance
+    }
+    
+    class var sectionDateFormatter : NSDateFormatter {
+        struct Static {
+            static let instance: NSDateFormatter = {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "EEEE"
+                return dateFormatter
+            }()
         }
         return Static.instance
     }

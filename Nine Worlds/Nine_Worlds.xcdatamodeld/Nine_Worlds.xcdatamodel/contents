@@ -16,6 +16,8 @@
     </entity>
     <entity name="Program" representedClassName="Nine_Worlds.Program" syncable="YES">
         <attribute name="attending" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="daySection" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="daySectionTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eighteenPlus" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="kidFriendly" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -39,7 +41,7 @@
     <elements>
         <element name="Location" positionX="-18" positionY="72" width="128" height="90"/>
         <element name="Person" positionX="-63" positionY="-18" width="128" height="150"/>
-        <element name="Program" positionX="-54" positionY="27" width="128" height="255"/>
+        <element name="Program" positionX="-54" positionY="27" width="128" height="285"/>
         <element name="Tag" positionX="-36" positionY="63" width="128" height="105"/>
     </elements>
 </model>

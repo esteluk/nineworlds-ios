@@ -13,7 +13,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
     var detailItem: Program? {
         didSet {
             // Update the view.

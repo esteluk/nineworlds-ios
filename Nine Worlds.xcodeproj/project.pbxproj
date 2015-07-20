@@ -25,6 +25,7 @@
 		D8B46B2D1B585F8F006E8E45 /* HTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B2C1B585F8F006E8E45 /* HTMLNode.swift */; };
 		D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B2E1B585FB2006E8E45 /* HTMLParser.swift */; };
 		D8B46B321B586037006E8E45 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B46B311B586037006E8E45 /* libxml2.dylib */; };
+		D8B46B351B5967DE006E8E45 /* ProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B341B5967DE006E8E45 /* ProgramCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		D8B46B2E1B585FB2006E8E45 /* HTMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLParser.swift; sourceTree = "<group>"; };
 		D8B46B301B585FD3006E8E45 /* Swift-HTML-Parser-Bridging-File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-File.h"; sourceTree = "<group>"; };
 		D8B46B311B586037006E8E45 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D8B46B341B5967DE006E8E45 /* ProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +128,13 @@
 		D83E87781B555C9B00580978 /* Nine Worlds */ = {
 			isa = PBXGroup;
 			children = (
-				D8B46B2A1B585F77006E8E45 /* Utils */,
 				D83E87A51B55609500580978 /* Controllers */,
 				D83E87A61B5562D600580978 /* Models */,
 				D83E87A21B555E1700580978 /* Networking */,
 				D83E87A11B555DE200580978 /* Resources */,
 				D83E87A01B555DD900580978 /* User Interface */,
+				D8B46B2A1B585F77006E8E45 /* Utils */,
+				D8B46B331B596791006E8E45 /* Views */,
 				D83E877B1B555C9B00580978 /* AppDelegate.swift */,
 				D83E877D1B555C9B00580978 /* Nine_Worlds.xcdatamodeld */,
 				D83E87791B555C9B00580978 /* Supporting Files */,
@@ -226,6 +229,14 @@
 				D8B46B301B585FD3006E8E45 /* Swift-HTML-Parser-Bridging-File.h */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		D8B46B331B596791006E8E45 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D8B46B341B5967DE006E8E45 /* ProgramCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +394,7 @@
 				D83E87B01B556DD700580978 /* DataManager.swift in Sources */,
 				D83E87AB1B5562E300580978 /* Person.swift in Sources */,
 				D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */,
+				D8B46B351B5967DE006E8E45 /* ProgramCell.swift in Sources */,
 				D83E87A41B555F3000580978 /* Networking.swift in Sources */,
 				D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */,
 				D8B46B2D1B585F8F006E8E45 /* HTMLNode.swift in Sources */,
