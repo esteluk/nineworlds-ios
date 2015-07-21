@@ -75,6 +75,17 @@ class Program: NSManagedObject {
             }
         }
         
+        // Add tags
+        if let tagArray = dictionary.objectForKey("tags") as? [String] {
+            for t in tagArray {
+                let tag = manager.searchByTitleOtherwiseCreate("Tag", title: t) as! Tag
+                tag.title = t
+                
+                tag.addProgramObject(self)
+                self.addTagObject(tag)
+            }
+        }
+        
         var error : NSError?
         var parser = HTMLParser(html: self.title, error: &error)
         if error != nil {
@@ -133,9 +144,40 @@ class Program: NSManagedObject {
         return Static.instance
     }
     
+    class var timeDateFormatter : NSDateFormatter {
+        struct Static {
+            static let instance: NSDateFormatter = {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                return dateFormatter
+            }()
+        }
+        
+        return Static.instance
+    }
+    
     func addPersonObject(person: Person) {
         var items = self.mutableOrderedSetValueForKey("people")
         items.addObject(person)
+    }
+    
+    func addTagObject(tag: Tag) {
+        var tags = self.mutableOrderedSetValueForKey("tags")
+        tags.addObject(tag)
+    }
+    
+    var tagString: String {
+        
+        var arr = [String]()
+        for p in self.tags.array as! [Tag] {
+            arr.append(p.title)
+        }
+        
+        return ", ".join(arr)
+    }
+    
+    var startTime: String {
+        return Program.timeDateFormatter.stringFromDate(self.startDate)
     }
 
 }

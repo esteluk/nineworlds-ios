@@ -9,11 +9,11 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResultsControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
+    var filters: [Tag] = [Tag]()
     var managedObjectContext: NSManagedObjectContext? = nil
-
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +26,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 88
 
         if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -35,10 +38,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         Networking.getProgram(managedObjectContext!)
         Networking.getPeople(managedObjectContext!)
-        
-//        NSNotificationCenter.defaultCenter().addObserverForName(DataManager.IMPORT_COMPLETE, object: nil, queue: NSOperationQueue.mainQueue()) { (notification : NSNotification?) -> Void in
-//            self.tableView.reloadData()
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,7 +75,23 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
+        } else if segue.identifier == "filters" {
+            let controller = segue.destinationViewController as! FilterController
+            controller.parentController = self
+            controller.managedObjectContext = self.managedObjectContext
         }
+    }
+    
+    // MARK: - FilterDelegate
+    func applyFilters(tags: [Tag]) {
+        self.filters = tags
+        self.fetchedResultsController.fetchRequest.predicate = self.filterPredicate
+        NSFetchedResultsController.deleteCacheWithName("Master")
+        self.fetchedResultsController.performFetch(nil)
+        
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.tableView.reloadData()
+        })
     }
 
     // MARK: - Table View
@@ -123,11 +138,26 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Program
-        cell.textLabel!.text = object.title
+        let programCell = cell as! ProgramCell
+        programCell.configure(object)
         
     }
 
     // MARK: - Fetched results controller
+    
+    var filterPredicate: NSPredicate? {
+        if self.filters.count > 0 {
+            var predicateArray = [NSPredicate]()
+            
+            for tag in self.filters {
+                predicateArray.append(NSPredicate(format: "ANY tags.title =[cd] %@", tag.title))
+            }
+            
+            return NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: predicateArray)
+        }
+        
+        return nil
+    }
 
     var fetchedResultsController: NSFetchedResultsController {
         if _fetchedResultsController != nil {
@@ -141,6 +171,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Set the batch size to a suitable number.
         fetchRequest.fetchBatchSize = 20
+        
+        fetchRequest.predicate = self.filterPredicate
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)

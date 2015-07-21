@@ -11,8 +11,13 @@ import UIKit
 class ProgramCell : UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var tracksLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     func configure(programItem: Program) {
-        
+        self.titleLabel.text = programItem.title
+        self.tracksLabel.text = programItem.tagString
+        self.timeLabel.text = programItem.startTime
     }
+
 }

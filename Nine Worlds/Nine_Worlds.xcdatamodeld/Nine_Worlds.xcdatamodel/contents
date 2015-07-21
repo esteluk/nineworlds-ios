@@ -33,6 +33,7 @@
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Tag" inverseName="programs" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Tag" representedClassName="Nine_Worlds.Tag" syncable="YES">
+        <attribute name="filterSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="tags" inverseEntity="Person" syncable="YES"/>
@@ -42,6 +43,6 @@
         <element name="Location" positionX="-18" positionY="72" width="128" height="90"/>
         <element name="Person" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="Program" positionX="-54" positionY="27" width="128" height="285"/>
-        <element name="Tag" positionX="-36" positionY="63" width="128" height="105"/>
+        <element name="Tag" positionX="-36" positionY="63" width="128" height="120"/>
     </elements>
 </model>

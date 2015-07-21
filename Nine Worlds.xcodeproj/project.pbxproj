@@ -26,6 +26,7 @@
 		D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B2E1B585FB2006E8E45 /* HTMLParser.swift */; };
 		D8B46B321B586037006E8E45 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B46B311B586037006E8E45 /* libxml2.dylib */; };
 		D8B46B351B5967DE006E8E45 /* ProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B341B5967DE006E8E45 /* ProgramCell.swift */; };
+		D8B46B371B5DD451006E8E45 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B361B5DD451006E8E45 /* FilterController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		D8B46B301B585FD3006E8E45 /* Swift-HTML-Parser-Bridging-File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swift-HTML-Parser-Bridging-File.h"; sourceTree = "<group>"; };
 		D8B46B311B586037006E8E45 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D8B46B341B5967DE006E8E45 /* ProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramCell.swift; sourceTree = "<group>"; };
+		D8B46B361B5DD451006E8E45 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 			children = (
 				D83E87801B555C9B00580978 /* MasterViewController.swift */,
 				D83E87821B555C9B00580978 /* DetailViewController.swift */,
+				D8B46B361B5DD451006E8E45 /* FilterController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */,
 				D83E87831B555C9B00580978 /* DetailViewController.swift in Sources */,
 				D83E87AC1B5562E300580978 /* Location.swift in Sources */,
+				D8B46B371B5DD451006E8E45 /* FilterController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
