@@ -26,7 +26,9 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        self.navigationItem.leftBarButtonItem = self.editButtonItem()
+        if self.filteredTags != nil {
+            self.filters = self.filteredTags!
+        }
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 88
@@ -197,6 +199,18 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         return _fetchedResultsController!
     }    
     var _fetchedResultsController: NSFetchedResultsController? = nil
+    
+    var filteredTags: [Tag]? {
+        let fetchRequest = NSFetchRequest(entityName: "Tag")
+        fetchRequest.predicate = NSPredicate(format: "filterSelected ==[cd] %@", true)
+        var error: NSError? = nil
+        let tags = self.managedObjectContext?.executeFetchRequest(fetchRequest, error: &error) as! [Tag]
+        if error == nil {
+            return tags
+        } else {
+            return nil
+        }
+    }
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
