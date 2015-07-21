@@ -10,6 +10,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet weak var detailTracksLabel: UILabel!
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
@@ -28,6 +29,9 @@ class DetailViewController: UIViewController {
             }
             if let label = self.detailDescriptionLabel {
                 label.text = detail.programDescription
+            }
+            if let label = self.detailTracksLabel {
+                label.text = detail.tagString
             }
         }
     }
