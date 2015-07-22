@@ -16,8 +16,8 @@ class Networking {
     var dataManager: DataManager
     var queue: dispatch_queue_t
     
-    init() {
-        self.context = (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundManagedObjectContext!
+    init(context: NSManagedObjectContext) {
+        self.context = context
         self.dataManager = DataManager(context: context)
         
         queue = dispatch_queue_create("uk.co.nineworlds", DISPATCH_QUEUE_SERIAL)

@@ -52,9 +52,6 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
         
-        let networking = Networking()
-        networking.loadData()
-        
         self.navigationItem.titleView = self.titleSegmentedControl
     }
     

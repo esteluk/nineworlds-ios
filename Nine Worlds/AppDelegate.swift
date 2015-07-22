@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         controller.managedObjectContext = self.managedObjectContext
         
         // Themeing
+        
+        // Download app data
+        let networking = Networking(context: self.backgroundManagedObjectContext!)
+        networking.loadData()
+        
         return true
     }
 
