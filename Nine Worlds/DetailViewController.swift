@@ -48,8 +48,14 @@ class DetailViewController: UIViewController {
                 self.updateFavouriteButton(button, programItem: detail)
             }
             
-            self.scrollView.hidden = false
-            self.emptyContentLabel.hidden = true
+            if let scrollview = self.scrollView {
+                scrollView.hidden = false
+            }
+            
+            if let empty = self.emptyContentLabel {
+                empty.hidden = true
+            }
+            
         } else {
             self.scrollView.hidden = true
             self.emptyContentLabel.hidden = false

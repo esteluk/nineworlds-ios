@@ -43,6 +43,10 @@ class DataManager {
         if context.save(&error) {
             let notification = NSNotification(name: DataManager.IMPORT_COMPLETE, object: nil)
             NSNotificationCenter.defaultCenter().postNotification(notification)
+            
+            if let parent = context.parentContext {
+                parent.save(nil)
+            }
         }
         
         if error != nil {
