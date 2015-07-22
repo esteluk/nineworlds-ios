@@ -27,10 +27,10 @@ class DetailViewController: UIViewController {
         // Update the user interface for the detail item.
         if let detail: Program = self.detailItem {
             if let label = self.detailTitleLabel {
-                label.text = detail.title
+                label.attributedText = detail.attributedTitle
             }
             if let label = self.detailDescriptionLabel {
-                label.text = detail.programDescription
+                label.attributedText = detail.attributedDescription
             }
             if let label = self.detailTracksLabel {
                 label.text = detail.tagString

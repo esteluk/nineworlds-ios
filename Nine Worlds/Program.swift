@@ -30,11 +30,21 @@ class Program: NSManagedObject {
     @NSManaged var ticketed: Bool
     
     var attributedTitle : NSAttributedString? {
-        return NSAttributedString(data: title.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType], documentAttributes: nil, error: nil);
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.3
+        
+        let font = UIFont.boldSystemFontOfSize(20.0)
+        
+        return NSAttributedString(string: title, attributes: [NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font])
     }
     
     var attributedDescription : NSAttributedString? {
-        return NSAttributedString(data: programDescription.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, options: [NSDocumentTypeDocumentAttribute : NSHTMLTextDocumentType], documentAttributes: nil, error: nil);
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.2
+        
+        let font = UIFont.systemFontOfSize(18.0)
+        
+        return NSAttributedString(string: programDescription, attributes: [NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font])
     }
     
     func loadFromDictionary(dictionary : NSDictionary, manager: DataManager) -> Program {
@@ -181,66 +191,3 @@ class Program: NSManagedObject {
     }
 
 }
-
-/*
-var program = [{
-"time": "18:45",
-"date": "2015-08-09",
-"title": "Critiquing Critique - A criticism workshop",
-"tags": ["Creative Writing"],
-"id": "377",
-"people": [{
-"name": "Roz Kaveney",
-"id": "78"
-}, {
-"name": "Tony Keen",
-"id": "81"
-}, {
-"id": "38",
-"name": "Val Nolan"
-}
-],
-"mins": "75",
-"desc": "For all the contempt in which critics are sometimes held, critical writing is as important to do well as any other sort of writing. Come along and learn from experienced critics about some of the techniques that can be employed.",
-"loc": ["Royal A"]
-}, {
-"mins": "90",
-"desc": "\"In The Turn\" is a feature length documentary about a 10-year-old transgender girl who finds acceptance and empowerment in the company of a queer roller derby league.\r\n\r\n\"In The Turn\" is screening as part of our \"Here Be Dragons\" Official Competition.",
-"loc": ["Room 41"],
-"date": "2015-08-09",
-"title": "In The Turn - (2014, dir. Erica Tremblay, 90mins)",
-"tags": ["Film Festival"],
-"id": "338",
-"people": [{
-"name": "Tara Brown",
-"id": "212"
-}
-],
-"time": "13:30"
-}, {
-"loc": ["Room 12"],
-"desc": "The majority of fanfiction is based on visual media (films, TV shows, etc), but there are also thriving fandoms based on literary works - and the Yuletide rare fandom exchange often includes fanfic based on literature, from the great classics to the Cat in the Hat. What are the challenges of writing in a fandom for which there's no visual reference? What are the opportunities? And, if it's an obscure work, how do you make it a fandom?",
-"mins": "75",
-"time": "17:00",
-"id": "159",
-"people": [{
-"name": "AL Johnson",
-"id": "145"
-}, {
-"id": "148",
-"name": "Alex"
-}, {
-"id": "123",
-"name": "Tanya Brown"
-}, {
-"name": "irisbleufic",
-"id": "18"
-}, {
-"name": "Jenn Hersey",
-"id": "149"
-}
-],
-"tags": ["Fanfic"],
-"date": "2015-08-08",
-"title": "Literary Fanfic and Book Fandoms - Examining the differences between literary and other fandoms"
-}, { */
