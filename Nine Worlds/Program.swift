@@ -31,7 +31,7 @@ class Program: NSManagedObject {
     
     var attributedTitle : NSAttributedString? {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.3
+        paragraphStyle.lineHeightMultiple = 1.2
         
         let font = UIFont.boldSystemFontOfSize(20.0)
         
