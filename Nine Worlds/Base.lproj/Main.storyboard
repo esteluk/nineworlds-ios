@@ -32,6 +32,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select a session" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gQx-zu-161">
+                                <rect key="frame" x="211" y="290" width="179" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sp3-n1-GoC">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
@@ -111,8 +117,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Sp3-n1-GoC" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" id="4cc-pS-jry"/>
+                            <constraint firstAttribute="centerY" secondItem="gQx-zu-161" secondAttribute="centerY" id="CFb-iu-dBB"/>
                             <constraint firstItem="Sp3-n1-GoC" firstAttribute="top" secondItem="SYR-Wa-9uf" secondAttribute="bottom" id="UEO-50-vjX"/>
                             <constraint firstItem="HOQ-WP-Bpq" firstAttribute="width" secondItem="svH-Pt-448" secondAttribute="width" id="WrJ-MS-qgn"/>
+                            <constraint firstAttribute="centerX" secondItem="gQx-zu-161" secondAttribute="centerX" id="hKR-ld-DGP"/>
                             <constraint firstItem="GAO-Cl-Wes" firstAttribute="top" secondItem="Sp3-n1-GoC" secondAttribute="bottom" id="jWP-xZ-usJ"/>
                             <constraint firstAttribute="trailing" secondItem="Sp3-n1-GoC" secondAttribute="trailing" id="rco-Di-0V6"/>
                         </constraints>
@@ -130,7 +138,9 @@
                         <outlet property="detailRoomLabel" destination="tFl-9I-5xF" id="B3z-p2-WvR"/>
                         <outlet property="detailTitleLabel" destination="0XM-y9-sOw" id="jwN-0m-4SP"/>
                         <outlet property="detailTracksLabel" destination="8QS-Dy-UQV" id="IR9-gG-boR"/>
+                        <outlet property="emptyContentLabel" destination="gQx-zu-161" id="huF-qE-OBo"/>
                         <outlet property="favouriteButton" destination="Jkk-hD-slc" id="cDe-mo-ENC"/>
+                        <outlet property="scrollView" destination="Sp3-n1-GoC" id="vJJ-rg-f34"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>

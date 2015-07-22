@@ -39,9 +39,14 @@ class DataManager {
     }
     
     func importComplete() {
-        if context.save(nil) {
+        var error: NSError?
+        if context.save(&error) {
             let notification = NSNotification(name: DataManager.IMPORT_COMPLETE, object: nil)
             NSNotificationCenter.defaultCenter().postNotification(notification)
+        }
+        
+        if error != nil {
+            print(error?.localizedDescription)
         }
     }
     

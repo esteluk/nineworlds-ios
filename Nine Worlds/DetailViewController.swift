@@ -15,6 +15,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var detailRoomLabel: UILabel!
 
+    @IBOutlet weak var emptyContentLabel: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
     
     var detailItem: Program? {
@@ -44,6 +47,12 @@ class DetailViewController: UIViewController {
             if let button = self.favouriteButton {
                 self.updateFavouriteButton(button, programItem: detail)
             }
+            
+            self.scrollView.hidden = false
+            self.emptyContentLabel.hidden = true
+        } else {
+            self.scrollView.hidden = true
+            self.emptyContentLabel.hidden = false
         }
     }
 
