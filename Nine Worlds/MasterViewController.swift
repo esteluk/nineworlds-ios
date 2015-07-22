@@ -15,6 +15,8 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
     var filters: [Tag] = [Tag]()
     var managedObjectContext: NSManagedObjectContext? = nil
     
+    var reloadObserver: NSObjectProtocol?
+    
     var titleSegmentedControl : UISegmentedControl {
         if _titleSegmentedControl != nil {
             return _titleSegmentedControl!
@@ -54,11 +56,23 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         }
         
         self.navigationItem.titleView = self.titleSegmentedControl
+        
+        self.reloadObserver = NSNotificationCenter.defaultCenter().addObserverForName(SharedDataManager.reloadInterfaceNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (notification: NSNotification!) -> Void in
+            self.reloadDataWithFilters()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.fetchedResultsController.managedObjectContext.save(nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if let observer = self.reloadObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+        }
     }
 
     override func didReceiveMemoryWarning() {

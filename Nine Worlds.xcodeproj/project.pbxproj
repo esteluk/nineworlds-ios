@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		78094430249113FA9C7268CB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16447B5788BDE68E53B232A6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D81E1E951B5FD602006CE25C /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81E1E941B5FD602006CE25C /* SharedDataManager.swift */; };
 		D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E877B1B555C9B00580978 /* AppDelegate.swift */; };
 		D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D83E877D1B555C9B00580978 /* Nine_Worlds.xcdatamodeld */; };
 		D83E87811B555C9B00580978 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87801B555C9B00580978 /* MasterViewController.swift */; };
@@ -44,6 +45,8 @@
 		16447B5788BDE68E53B232A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C975E107168147A680E81EDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D81E1E921B5FD11D006CE25C /* Nine Worlds.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Nine Worlds.entitlements"; sourceTree = "<group>"; };
+		D81E1E941B5FD602006CE25C /* SharedDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
 		D83E87761B555C9B00580978 /* Nine Worlds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nine Worlds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83E877A1B555C9B00580978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83E877B1B555C9B00580978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +112,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D81E1E931B5FD5EF006CE25C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D81E1E941B5FD602006CE25C /* SharedDataManager.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		D83E876D1B555C9B00580978 = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +143,10 @@
 		D83E87781B555C9B00580978 /* Nine Worlds */ = {
 			isa = PBXGroup;
 			children = (
+				D81E1E921B5FD11D006CE25C /* Nine Worlds.entitlements */,
 				D83E87A51B55609500580978 /* Controllers */,
 				D83E87A61B5562D600580978 /* Models */,
+				D81E1E931B5FD5EF006CE25C /* Managers */,
 				D83E87A21B555E1700580978 /* Networking */,
 				D83E87A11B555DE200580978 /* Resources */,
 				D83E87A01B555DD900580978 /* User Interface */,
@@ -297,6 +310,12 @@
 				TargetAttributes = {
 					D83E87751B555C9B00580978 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 95X8VY6TB2;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					D83E878F1B555C9B00580978 = {
 						CreatedOnToolsVersion = 6.4;
@@ -410,6 +429,7 @@
 				D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */,
 				D83E87831B555C9B00580978 /* DetailViewController.swift in Sources */,
 				D83E87AC1B5562E300580978 /* Location.swift in Sources */,
+				D81E1E951B5FD602006CE25C /* SharedDataManager.swift in Sources */,
 				D8B46B371B5DD451006E8E45 /* FilterController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,6 +560,9 @@
 			baseConfigurationReference = C975E107168147A680E81EDB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Nine Worlds/Nine Worlds.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -548,6 +571,7 @@
 				INFOPLIST_FILE = "Nine Worlds/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nine Worlds/Swift-HTML-Parser-Bridging-File.h";
 			};
 			name = Debug;
@@ -557,6 +581,9 @@
 			baseConfigurationReference = 7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Nine Worlds/Nine Worlds.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -565,6 +592,7 @@
 				INFOPLIST_FILE = "Nine Worlds/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Nine Worlds/Swift-HTML-Parser-Bridging-File.h";
 			};
 			name = Release;
