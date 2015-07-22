@@ -190,8 +190,36 @@ class Program: NSManagedObject {
         return location.title
     }
     
+    var listDetail: String {
+        return "\(startTime)-\(endTime) - \(roomString)"
+    }
+    
     var startTime: String {
         return Program.timeDateFormatter.stringFromDate(self.startDate)
+    }
+    
+    var endTime: String {
+        let endDate: NSDate = self.startDate.dateByAddingTimeInterval(self.length.doubleValue * 60)
+        return Program.timeDateFormatter.stringFromDate(endDate)
+    }
+    
+    var warningTag: String? {
+        if eighteenPlus {
+            return "18+"
+        }
+        if sixteenPlus {
+            return "16+"
+        }
+        if kidFriendly {
+            return "Kid-friendly!"
+        }
+        if ticketed {
+            return "Ticketed"
+        }
+        if matureContent {
+            return "Adult content"
+        }
+        return nil
     }
 
 }
