@@ -11,7 +11,24 @@ import CoreData
 import Foundation
 
 class Networking {
-    class func getPeople(context : NSManagedObjectContext) -> Void {
+    
+    var context: NSManagedObjectContext
+    var dataManager: DataManager
+    var queue: dispatch_queue_t
+    
+    init() {
+        self.context = (UIApplication.sharedApplication().delegate as! AppDelegate).backgroundManagedObjectContext!
+        self.dataManager = DataManager(context: context)
+        
+        queue = dispatch_queue_create("uk.co.nineworlds", DISPATCH_QUEUE_SERIAL)
+    }
+    
+    func loadData() -> Void {
+        self.getProgram()
+        self.getPeople()
+    }
+    
+    func getPeople() -> Void {
         Alamofire.request(Router.People())
             .responseString(encoding: NSUTF8StringEncoding)
                 { (request : NSURLRequest?, response : NSHTTPURLResponse?, data : String?, error : NSError?) -> Void in
@@ -23,8 +40,9 @@ class Networking {
                         if let jsonData = jsonString?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                             var jsonResult : [NSDictionary] = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil) as! [NSDictionary]
                             
-                            let dataManager = DataManager(context: context)
-                            dataManager.peopleFromDictionary(jsonResult)
+                            dispatch_async(self.queue, { () -> Void in
+                                self.dataManager.peopleFromDictionary(jsonResult)
+                            })
                             
                         } else {
                             // TODO Error
@@ -35,7 +53,7 @@ class Networking {
         }
     }
     
-    class func getProgram(context : NSManagedObjectContext) -> Void {
+    func getProgram() -> Void {
         Alamofire.request(Router.Program())
             .responseString(encoding: NSUTF8StringEncoding)
                 { (request : NSURLRequest?, response : NSHTTPURLResponse?, data : String?, error : NSError?) -> Void in
@@ -44,11 +62,14 @@ class Networking {
                         jsonString = jsonString?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                         jsonString = jsonString?.substringToIndex(jsonString!.endIndex.predecessor())
                         if let jsonData = jsonString?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                            var error : NSError?
-                            let jsonResult : [NSDictionary] = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as! [NSDictionary]
                             
-                            let dataManager = DataManager(context: context)
-                            dataManager.programFromDictionary(jsonResult)
+                            dispatch_async(self.queue, { () -> Void in
+                                var error : NSError?
+                                let jsonResult : [NSDictionary] = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as! [NSDictionary]
+                                
+                                self.dataManager.programFromDictionary(jsonResult)
+                            })
+                            
                         }
                     }
         }

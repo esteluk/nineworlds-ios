@@ -27,6 +27,7 @@
 		D8B46B321B586037006E8E45 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B46B311B586037006E8E45 /* libxml2.dylib */; };
 		D8B46B351B5967DE006E8E45 /* ProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B341B5967DE006E8E45 /* ProgramCell.swift */; };
 		D8B46B371B5DD451006E8E45 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B361B5DD451006E8E45 /* FilterController.swift */; };
+		D8B46B3C1B5F1216006E8E45 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B3B1B5F1216006E8E45 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		D8B46B311B586037006E8E45 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D8B46B341B5967DE006E8E45 /* ProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramCell.swift; sourceTree = "<group>"; };
 		D8B46B361B5DD451006E8E45 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
+		D8B46B3B1B5F1216006E8E45 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				D83E87871B555C9B00580978 /* Images.xcassets */,
+				D8B46B3B1B5F1216006E8E45 /* Colors.swift */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83E87AD1B5562E300580978 /* Tag.swift in Sources */,
+				D8B46B3C1B5F1216006E8E45 /* Colors.swift in Sources */,
 				D83E87B01B556DD700580978 /* DataManager.swift in Sources */,
 				D83E87AB1B5562E300580978 /* Person.swift in Sources */,
 				D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */,

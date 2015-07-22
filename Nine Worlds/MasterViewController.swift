@@ -14,6 +14,20 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
     var detailViewController: DetailViewController? = nil
     var filters: [Tag] = [Tag]()
     var managedObjectContext: NSManagedObjectContext? = nil
+    
+    var titleSegmentedControl : UISegmentedControl {
+        if _titleSegmentedControl != nil {
+            return _titleSegmentedControl!
+        }
+        
+        let control = UISegmentedControl(items: ["All", "Favourites"])
+        control.selectedSegmentIndex = 0
+        control.addTarget(self, action: "titleSegmentedClick:", forControlEvents: UIControlEvents.ValueChanged)
+        _titleSegmentedControl = control
+        return _titleSegmentedControl!
+    }
+    
+    var _titleSegmentedControl : UISegmentedControl?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,8 +52,15 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
             self.detailViewController = controllers[controllers.count-1].topViewController as? DetailViewController
         }
         
-        Networking.getProgram(managedObjectContext!)
-        Networking.getPeople(managedObjectContext!)
+        let networking = Networking()
+        networking.loadData()
+        
+        self.navigationItem.titleView = self.titleSegmentedControl
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.fetchedResultsController.managedObjectContext.save(nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +86,11 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
             abort()
         }
     }
+    
+    // MARK: - IBActions
+    func titleSegmentedClick(sender: UISegmentedControl) {
+        self.reloadDataWithFilters()
+    }
 
     // MARK: - Segues
 
@@ -87,6 +113,10 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
     // MARK: - FilterDelegate
     func applyFilters(tags: [Tag]) {
         self.filters = tags
+        self.reloadDataWithFilters()
+    }
+    
+    func reloadDataWithFilters() {
         self.fetchedResultsController.fetchRequest.predicate = self.filterPredicate
         NSFetchedResultsController.deleteCacheWithName("Master")
         self.fetchedResultsController.performFetch(nil)
@@ -133,6 +163,33 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         }
     }
     
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+        
+        if let program = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Program {
+            
+            if program.attending {
+                var unfavouriteAction = UITableViewRowAction(style: .Normal, title: "Unfavourite", handler: { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+                    program.attending = false
+                    self.fetchedResultsController.managedObjectContext.save(nil)
+                    tableView.setEditing(false, animated: true)
+                })
+                
+                return [unfavouriteAction]
+            } else {
+                var favouriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Favourite") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+                    // Do something
+                    program.attending = true
+                    self.fetchedResultsController.managedObjectContext.save(nil)
+                    tableView.setEditing(false, animated: true)
+                }
+                
+                return [favouriteAction]
+            }
+        }
+        
+        return nil
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let data = self.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: 0, inSection: section)) as! Program
         return data.daySectionTitle
@@ -142,12 +199,18 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Program
         let programCell = cell as! ProgramCell
         programCell.configure(object)
-        
     }
 
     // MARK: - Fetched results controller
     
     var filterPredicate: NSPredicate? {
+        
+        var favouritePredicate: NSPredicate? = nil
+        if self.titleSegmentedControl.selectedSegmentIndex == 1 {
+            favouritePredicate = NSPredicate(format: "attending == %@", true)
+        }
+        
+        var fPredicate: NSPredicate? = nil
         if self.filters.count > 0 {
             var predicateArray = [NSPredicate]()
             
@@ -155,10 +218,18 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
                 predicateArray.append(NSPredicate(format: "ANY tags.title =[cd] %@", tag.title))
             }
             
-            return NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: predicateArray)
+            fPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.OrPredicateType, subpredicates: predicateArray)
         }
         
-        return nil
+        if favouritePredicate != nil && fPredicate != nil {
+            return NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [favouritePredicate!, fPredicate!])
+        } else if favouritePredicate != nil {
+            return favouritePredicate
+        } else if fPredicate != nil {
+            return fPredicate
+        } else {
+            return nil
+        }
     }
 
     var fetchedResultsController: NSFetchedResultsController {

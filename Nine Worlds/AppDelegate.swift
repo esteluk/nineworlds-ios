@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let controller = masterNavigationController.topViewController as! MasterViewController
         controller.managedObjectContext = self.managedObjectContext
+        
+        // Themeing
         return true
     }
 
@@ -109,9 +111,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         if coordinator == nil {
             return nil
         }
-        var managedObjectContext = NSManagedObjectContext()
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
+    }()
+    
+    lazy var backgroundManagedObjectContext: NSManagedObjectContext? = {
+        var moc = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.PrivateQueueConcurrencyType)
+        moc.parentContext = self.managedObjectContext
+        return moc
     }()
 
     // MARK: - Core Data Saving support
