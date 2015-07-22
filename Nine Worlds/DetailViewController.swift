@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
     @IBOutlet weak var detailRoomLabel: UILabel!
+    @IBOutlet weak var detailTagLabel: UILabel!
 
     @IBOutlet weak var emptyContentLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -40,7 +41,10 @@ class DetailViewController: UIViewController {
                 label.text = detail.tagString
             }
             if let label = self.detailRoomLabel {
-                label.text = detail.roomString
+                label.text = detail.detailScreenInfo
+            }
+            if let label = self.detailTagLabel {
+                label.text = detail.warningTag
             }
             
             // Set Favourite button text

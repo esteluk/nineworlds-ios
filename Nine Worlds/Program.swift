@@ -40,7 +40,7 @@ class Program: NSManagedObject {
     
     var attributedDescription : NSAttributedString? {
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.2
+        paragraphStyle.lineHeightMultiple = 1.5
         
         let font = UIFont.systemFontOfSize(18.0)
         
@@ -192,6 +192,10 @@ class Program: NSManagedObject {
     
     var listDetail: String {
         return "\(startTime)-\(endTime) - \(roomString)"
+    }
+    
+    var detailScreenInfo: String {
+        return "\(daySectionTitle) \(startTime)-\(endTime) - \(roomString)"
     }
     
     var startTime: String {
