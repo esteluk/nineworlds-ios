@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTracksLabel: UILabel!
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var detailRoomLabel: UILabel!
 
     @IBOutlet weak var favouriteButton: UIBarButtonItem!
     
@@ -34,6 +35,9 @@ class DetailViewController: UIViewController {
             }
             if let label = self.detailTracksLabel {
                 label.text = detail.tagString
+            }
+            if let label = self.detailRoomLabel {
+                label.text = detail.roomString
             }
             
             // Set Favourite button text

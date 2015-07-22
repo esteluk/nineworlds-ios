@@ -186,6 +186,10 @@ class Program: NSManagedObject {
         return ", ".join(arr)
     }
     
+    var roomString: String {
+        return location.title
+    }
+    
     var startTime: String {
         return Program.timeDateFormatter.stringFromDate(self.startDate)
     }
