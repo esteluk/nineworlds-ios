@@ -17,7 +17,7 @@ class Person: NSManagedObject {
     @NSManaged var imgLink: String
     @NSManaged var bioLink: String
     @NSManaged var programItems: NSSet
-    @NSManaged var tags: NSOrderedSet
+    @NSManaged var tags: NSSet
     
     func loadFromDictionary(dictionary: NSDictionary) -> Person {
         self.id = (dictionary.objectForKey("id") as! NSString).integerValue

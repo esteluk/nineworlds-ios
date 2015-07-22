@@ -19,8 +19,8 @@ class Program: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var length: NSNumber
     @NSManaged var programDescription: String
-    @NSManaged var people: NSOrderedSet
-    @NSManaged var tags: NSOrderedSet
+    @NSManaged var people: NSSet
+    @NSManaged var tags: NSSet
     @NSManaged var location: Location
     
     @NSManaged var matureContent: Bool
@@ -167,19 +167,19 @@ class Program: NSManagedObject {
     }
     
     func addPersonObject(person: Person) {
-        var items = self.mutableOrderedSetValueForKey("people")
+        var items = self.mutableSetValueForKey("people")
         items.addObject(person)
     }
     
     func addTagObject(tag: Tag) {
-        var tags = self.mutableOrderedSetValueForKey("tags")
+        var tags = self.mutableSetValueForKey("tags")
         tags.addObject(tag)
     }
     
     var tagString: String {
         
         var arr = [String]()
-        for p in self.tags.array as! [Tag] {
+        for p in self.tags.allObjects as! [Tag] {
             arr.append(p.title)
         }
         

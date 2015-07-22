@@ -23,12 +23,14 @@ class SharedDataManager {
     var persistentStoreDidImportUbiquitousChangedNotification: NSObjectProtocol?
     
     var persistentStore: NSPersistentStoreCoordinator?
+    var managedObjectContext: NSManagedObjectContext?
     
-    init(store: NSPersistentStoreCoordinator?) {
+    init(store: NSPersistentStoreCoordinator?, backgroundContext: NSManagedObjectContext?) {
         let fileManager = NSFileManager.defaultManager()
         let icloudToken = fileManager.ubiquityIdentityToken
         
         self.persistentStore = store
+        self.managedObjectContext = backgroundContext
         
         if icloudToken != nil {
             let tokenData = NSKeyedArchiver.archivedDataWithRootObject(icloudToken!)
@@ -58,26 +60,27 @@ class SharedDataManager {
         })
         
         self.persistentStoreWillChangeNotification = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreCoordinatorStoresWillChangeNotification, object: self.persistentStore, queue: NSOperationQueue.mainQueue(), usingBlock: { (notification: NSNotification!) -> Void in
-            if let context = self.persistentStore?.persistentStores.first?.managedObjectContext {
-                context!.performBlockAndWait({ () -> Void in
+            if let context = self.managedObjectContext {
+                context.performBlockAndWait({ () -> Void in
                     var error: NSError? = nil
-                    if context != nil && context!.hasChanges {
-                        let success = context!.save(&error)
+                    if context.hasChanges {
+                        let success = context.save(&error)
                         if !success && error != nil {
                             print(error?.localizedDescription)
                         }
                     }
                     
-                    context!.reset()
+                    context.reset()
                 })
             }
         })
         
         self.persistentStoreDidImportUbiquitousChangedNotification = NSNotificationCenter.defaultCenter().addObserverForName(NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: self.persistentStore, queue: NSOperationQueue.mainQueue(), usingBlock: { (notification: NSNotification!) -> Void in
             print("Data updated from network")
-            if let context = self.persistentStore?.persistentStores.first?.managedObjectContext {
-                context!.performBlock({ () -> Void in
-                    context!.mergeChangesFromContextDidSaveNotification(notification)
+            if let context = self.managedObjectContext {
+                context.performBlock({ () -> Void in
+                    context.mergeChangesFromContextDidSaveNotification(notification)
+                    context.save(nil)
                 })
             }
         })

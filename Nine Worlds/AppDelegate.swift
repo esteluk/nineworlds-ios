@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         // Themeing
         
         // Check for iCloud access
-        sharedDataManager = SharedDataManager(store: self.persistentStoreCoordinator)
+        sharedDataManager = SharedDataManager(store: self.persistentStoreCoordinator, backgroundContext: backgroundManagedObjectContext)
         
         // Download app data
         let networking = Networking(context: self.backgroundManagedObjectContext!)
