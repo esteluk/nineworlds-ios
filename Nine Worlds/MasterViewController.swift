@@ -118,8 +118,15 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         NSFetchedResultsController.deleteCacheWithName("Master")
         self.fetchedResultsController.performFetch(nil)
         
+        UIView.transitionWithView(self.tableView,
+            duration: 0.3,
+            options: UIViewAnimationOptions.TransitionCrossDissolve,
+            animations: { () -> Void in
+                self.tableView.reloadData()
+        }, completion: nil)
+        
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            self.tableView.reloadData()
+            
         })
     }
 
@@ -204,7 +211,7 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         
         var favouritePredicate: NSPredicate? = nil
         if self.titleSegmentedControl.selectedSegmentIndex == 1 {
-            favouritePredicate = NSPredicate(format: "attending == %@", true)
+            favouritePredicate = NSPredicate(format: "attending == %@", NSNumber(bool: true))
         }
         
         var fPredicate: NSPredicate? = nil
