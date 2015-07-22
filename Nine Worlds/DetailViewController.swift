@@ -14,6 +14,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var detailTitleLabel: UILabel!
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
+    @IBOutlet weak var favouriteButton: UIBarButtonItem!
+    
     var detailItem: Program? {
         didSet {
             // Update the view.
@@ -33,6 +35,11 @@ class DetailViewController: UIViewController {
             if let label = self.detailTracksLabel {
                 label.text = detail.tagString
             }
+            
+            // Set Favourite button text
+            if let button = self.favouriteButton {
+                self.updateFavouriteButton(button, programItem: detail)
+            }
         }
     }
 
@@ -47,6 +54,18 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func favouriteButtonPressed(sender: UIBarButtonItem) {
+        self.detailItem?.attending = !self.detailItem!.attending
+        self.updateFavouriteButton(sender, programItem: self.detailItem!)
+    }
+    
+    func updateFavouriteButton(button: UIBarButtonItem, programItem: Program) {
+        if programItem.attending {
+            button.title = "Unfavourite"
+        } else {
+            button.title = "Favourite"
+        }
+    }
 
 }
 

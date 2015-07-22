@@ -203,6 +203,7 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Program
         let programCell = cell as! ProgramCell
         programCell.configure(object)
+        programCell.layoutMargins = UIEdgeInsetsZero
     }
 
     // MARK: - Fetched results controller
