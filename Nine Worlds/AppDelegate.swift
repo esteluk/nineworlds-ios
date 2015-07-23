@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let splitViewController = self.window!.rootViewController as! UISplitViewController
+        let splitViewController = (self.window!.rootViewController as! UITabBarController).viewControllers![1] as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
         splitViewController.delegate = self
@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         controller.managedObjectContext = self.managedObjectContext
         
         // Themeing
+        UITabBar.appearance().tintColor = Colors.redColor()
         
         // Download app data
         let networking = Networking(context: self.backgroundManagedObjectContext!)
