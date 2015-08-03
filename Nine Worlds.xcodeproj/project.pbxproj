@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		78094430249113FA9C7268CB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16447B5788BDE68E53B232A6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D806B2EC1B6FE30A000529AA /* ProgramDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806B2EB1B6FE30A000529AA /* ProgramDetailsCell.swift */; };
+		D806B2EE1B6FEAF3000529AA /* ProgramHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806B2ED1B6FEAF3000529AA /* ProgramHeader.swift */; };
 		D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E877B1B555C9B00580978 /* AppDelegate.swift */; };
 		D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D83E877D1B555C9B00580978 /* Nine_Worlds.xcdatamodeld */; };
 		D83E87811B555C9B00580978 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E87801B555C9B00580978 /* MasterViewController.swift */; };
@@ -29,6 +31,7 @@
 		D8B46B351B5967DE006E8E45 /* ProgramCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B341B5967DE006E8E45 /* ProgramCell.swift */; };
 		D8B46B371B5DD451006E8E45 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B361B5DD451006E8E45 /* FilterController.swift */; };
 		D8B46B3C1B5F1216006E8E45 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B46B3B1B5F1216006E8E45 /* Colors.swift */; };
+		D8B5C4501B627BCB00AA641E /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B5C44F1B627BCB00AA641E /* DashboardController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,8 @@
 		16447B5788BDE68E53B232A6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E34C9DFB88B608862C036AC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C975E107168147A680E81EDB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D806B2EB1B6FE30A000529AA /* ProgramDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramDetailsCell.swift; sourceTree = "<group>"; };
+		D806B2ED1B6FEAF3000529AA /* ProgramHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramHeader.swift; sourceTree = "<group>"; };
 		D83E87761B555C9B00580978 /* Nine Worlds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nine Worlds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D83E877A1B555C9B00580978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D83E877B1B555C9B00580978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 		D8B46B341B5967DE006E8E45 /* ProgramCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramCell.swift; sourceTree = "<group>"; };
 		D8B46B361B5DD451006E8E45 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterController.swift; sourceTree = "<group>"; };
 		D8B46B3B1B5F1216006E8E45 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		D8B5C44F1B627BCB00AA641E /* DashboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,9 +210,10 @@
 		D83E87A51B55609500580978 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D83E87801B555C9B00580978 /* MasterViewController.swift */,
+				D8B5C44F1B627BCB00AA641E /* DashboardController.swift */,
 				D83E87821B555C9B00580978 /* DetailViewController.swift */,
 				D8B46B361B5DD451006E8E45 /* FilterController.swift */,
+				D83E87801B555C9B00580978 /* MasterViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -244,6 +251,8 @@
 			isa = PBXGroup;
 			children = (
 				D8B46B341B5967DE006E8E45 /* ProgramCell.swift */,
+				D806B2EB1B6FE30A000529AA /* ProgramDetailsCell.swift */,
+				D806B2ED1B6FEAF3000529AA /* ProgramHeader.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -401,10 +410,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8B5C4501B627BCB00AA641E /* DashboardController.swift in Sources */,
 				D83E87AD1B5562E300580978 /* Tag.swift in Sources */,
 				D8B46B3C1B5F1216006E8E45 /* Colors.swift in Sources */,
 				D83E87B01B556DD700580978 /* DataManager.swift in Sources */,
 				D83E87AB1B5562E300580978 /* Person.swift in Sources */,
+				D806B2EE1B6FEAF3000529AA /* ProgramHeader.swift in Sources */,
 				D83E877F1B555C9B00580978 /* Nine_Worlds.xcdatamodeld in Sources */,
 				D8B46B351B5967DE006E8E45 /* ProgramCell.swift in Sources */,
 				D83E87A41B555F3000580978 /* Networking.swift in Sources */,
@@ -412,6 +423,7 @@
 				D8B46B2D1B585F8F006E8E45 /* HTMLNode.swift in Sources */,
 				D83E87AE1B5562E300580978 /* Program.swift in Sources */,
 				D83E87811B555C9B00580978 /* MasterViewController.swift in Sources */,
+				D806B2EC1B6FE30A000529AA /* ProgramDetailsCell.swift in Sources */,
 				D8B46B2F1B585FB2006E8E45 /* HTMLParser.swift in Sources */,
 				D83E87831B555C9B00580978 /* DetailViewController.swift in Sources */,
 				D83E87AC1B5562E300580978 /* Location.swift in Sources */,

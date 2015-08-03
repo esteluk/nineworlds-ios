@@ -13,6 +13,7 @@ class Program: NSManagedObject {
     
     @NSManaged var attending: Bool
     @NSManaged var startDate: NSDate
+    @NSManaged var endDate: NSDate
     @NSManaged var daySection: NSNumber
     @NSManaged var daySectionTitle: String
     @NSManaged var title: String
@@ -62,6 +63,7 @@ class Program: NSManagedObject {
         let time = dictionary.objectForKey("time") as! String
         
         self.startDate = Program.programDateFormatter.dateFromString(date + " " + time)!
+        self.endDate = self.startDate.dateByAddingTimeInterval(60 * self.length.doubleValue)
         
         // Associate with people
         if let peopleArray = dictionary.objectForKey("people") as? [NSDictionary] {
