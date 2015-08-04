@@ -457,6 +457,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.98301091269841268" green="0.98301091269841268" blue="0.98301091269841268" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="vCg-H5-nXm" secondAttribute="bottom" id="0VV-jn-JLR"/>
                                             <constraint firstAttribute="centerY" secondItem="Gdv-oI-YdU" secondAttribute="centerY" id="1Fk-rg-SW9"/>
@@ -483,6 +484,7 @@
                                             <outlet property="dateLabel" destination="asR-lt-E3k" id="p9K-ik-zjx"/>
                                             <outlet property="tagsLabel" destination="lHc-sI-n94" id="QqE-lr-Rff"/>
                                             <outlet property="titleLabel" destination="Gdv-oI-YdU" id="HSc-MM-YND"/>
+                                            <segue destination="JEX-9P-axG" kind="show" identifier="showDetail" id="EOu-M8-7Gd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -537,11 +539,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DashboardIcon" width="39" height="39"/>
-        <image name="TodayIcon" width="39" height="39"/>
+        <image name="DashboardIcon" width="21" height="20"/>
+        <image name="TodayIcon" width="20" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tll-UG-LXB"/>
+        <segue reference="6S0-TO-JiA"/>
+        <segue reference="GKi-kA-LjT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.50980392156862742" green="0.090196078431372548" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -19,7 +19,7 @@ class ProgramDetailsCell: UICollectionViewCell {
         self.dateLabel.text = program.listDetail
         self.tagsLabel.text = program.tagString
         
-        self.backgroundColor = UIColor.whiteColor()
+//        self.backgroundColor = UIColor.whiteColor()
         
         // Set some shadows
         self.layer.masksToBounds = false

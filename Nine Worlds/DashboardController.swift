@@ -20,6 +20,22 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         self.managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail" {
+            
+            let indexPath = self.collectionView.indexPathsForSelectedItems()[0] as! NSIndexPath
+            var object: Program
+            if indexPath.section == 0 {
+                object = self.nowFetchedResultsController.objectAtIndexPath(indexPath) as! Program
+            } else {
+                object = self.nextFetchedResultsController.objectAtIndexPath(NSIndexPath(forItem: indexPath.row, inSection: 0)) as! Program
+            }
+            
+            let dvc = segue.destinationViewController as! DetailViewController
+            dvc.detailItem = object
+        }
+    }
+    
     // MARK: UICollectionViewDataSource methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 2
