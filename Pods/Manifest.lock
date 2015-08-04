@@ -1,10 +1,18 @@
 PODS:
   - Alamofire (1.2.3)
+  - Crashlytics (3.1.0)
+  - Fabric (1.2.8):
+    - Fabric/Base (= 1.2.8)
+  - Fabric/Base (1.2.8)
 
 DEPENDENCIES:
   - Alamofire
+  - Crashlytics
+  - Fabric
 
 SPEC CHECKSUMS:
   Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
+  Crashlytics: ef9a58a4e806b316a1748c06432f6f847ba09ac6
+  Fabric: a9eabe53915e9f1db55a84dd2838737928675878
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
