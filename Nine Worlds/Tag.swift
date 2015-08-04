@@ -14,11 +14,11 @@ class Tag: NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var filterSelected: Bool
     @NSManaged var title: String
-    @NSManaged var programs: NSSet
-    @NSManaged var people: NSSet
+    @NSManaged var programs: NSOrderedSet
+    @NSManaged var people: NSOrderedSet
     
     func addProgramObject(program: Program) -> Void {
-        var items = self.mutableSetValueForKey("programs")
+        var items = self.mutableOrderedSetValueForKey("programs")
         items.addObject(program)
     }
 

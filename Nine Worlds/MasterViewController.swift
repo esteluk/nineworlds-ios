@@ -60,7 +60,6 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.fetchedResultsController.managedObjectContext.save(nil)
     }
 
     override func didReceiveMemoryWarning() {

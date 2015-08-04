@@ -11,7 +11,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="imgLink" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="programItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="people" inverseEntity="Program" syncable="YES"/>
+        <relationship name="programItems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Program" inverseName="people" inverseEntity="Program" syncable="YES"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Tag" inverseName="people" inverseEntity="Tag" syncable="YES"/>
     </entity>
     <entity name="Program" representedClassName="Nine_Worlds.Program" syncable="YES">
@@ -37,8 +37,8 @@
         <attribute name="filterSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="tags" inverseEntity="Person" syncable="YES"/>
-        <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Program" inverseName="tags" inverseEntity="Program" syncable="YES"/>
+        <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Person" inverseName="tags" inverseEntity="Person" syncable="YES"/>
+        <relationship name="programs" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Program" inverseName="tags" inverseEntity="Program" syncable="YES"/>
     </entity>
     <elements>
         <element name="Location" positionX="-18" positionY="72" width="128" height="90"/>

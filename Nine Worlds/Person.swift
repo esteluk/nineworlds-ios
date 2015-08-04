@@ -16,7 +16,7 @@ class Person: NSManagedObject {
     @NSManaged var bio: String
     @NSManaged var imgLink: String
     @NSManaged var bioLink: String
-    @NSManaged var programItems: NSSet
+    @NSManaged var programItems: NSOrderedSet
     @NSManaged var tags: NSOrderedSet
     
     func loadFromDictionary(dictionary: NSDictionary) -> Person {
@@ -43,7 +43,7 @@ class Person: NSManagedObject {
     }
     
     func addProgramObject(program: Program) {
-        var items = self.mutableSetValueForKey("programItems")
+        var items = self.mutableOrderedSetValueForKey("programItems")
         items.addObject(program)
     }
 

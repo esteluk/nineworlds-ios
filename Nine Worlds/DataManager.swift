@@ -40,6 +40,7 @@ class DataManager {
     
     func importComplete() {
         var error: NSError?
+        context.processPendingChanges()
         if context.save(&error) {
             let notification = NSNotification(name: DataManager.IMPORT_COMPLETE, object: nil)
             NSNotificationCenter.defaultCenter().postNotification(notification)
