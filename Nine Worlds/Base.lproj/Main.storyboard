@@ -5,6 +5,7 @@
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Schedule-->
@@ -513,12 +514,21 @@
                                     <outlet property="delegate" destination="usa-ii-C36" id="euV-fY-1zZ"/>
                                 </connections>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading the Nine Worlds schedule..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGu-cu-MRW">
+                                <rect key="frame" x="162" y="220" width="277" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6ru-9g-xOJ" firstAttribute="top" secondItem="COE-Yx-qkE" secondAttribute="topMargin" id="Gb8-hl-vo5"/>
                             <constraint firstItem="6ru-9g-xOJ" firstAttribute="leading" secondItem="COE-Yx-qkE" secondAttribute="leading" constant="10" id="Q1z-rr-mLl"/>
+                            <constraint firstAttribute="centerY" secondItem="WGu-cu-MRW" secondAttribute="centerY" multiplier="1.3" id="S4b-Px-kZk"/>
                             <constraint firstAttribute="trailing" secondItem="6ru-9g-xOJ" secondAttribute="trailing" constant="10" id="VHJ-Tv-Iba"/>
+                            <constraint firstAttribute="centerX" secondItem="WGu-cu-MRW" secondAttribute="centerX" id="gXm-Mt-D9g"/>
+                            <constraint firstItem="WGu-cu-MRW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="COE-Yx-qkE" secondAttribute="leading" constant="100" id="rh5-aY-yx6"/>
                             <constraint firstItem="6ru-9g-xOJ" firstAttribute="top" secondItem="6Ex-HD-BlY" secondAttribute="bottom" id="syG-gt-Fuh"/>
                             <constraint firstItem="uO9-1G-Xyt" firstAttribute="top" secondItem="6ru-9g-xOJ" secondAttribute="bottom" id="ufk-Cr-51b"/>
                         </constraints>
@@ -531,6 +541,7 @@
                     <navigationItem key="navigationItem" title="Dashboard" id="tB9-Q5-6JN"/>
                     <connections>
                         <outlet property="collectionView" destination="6ru-9g-xOJ" id="A26-P6-xLn"/>
+                        <outlet property="emptyView" destination="WGu-cu-MRW" id="0aJ-8T-mqr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1IC-U6-oSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,8 +554,8 @@
         <image name="TodayIcon" width="20" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="EOu-M8-7Gd"/>
         <segue reference="6S0-TO-JiA"/>
-        <segue reference="GKi-kA-LjT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.50980392156862742" green="0.090196078431372548" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
 </document>

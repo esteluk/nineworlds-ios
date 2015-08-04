@@ -40,6 +40,8 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
         // Do any additional setup after loading the view, typically from a nib.
         if self.filteredTags != nil {
             self.filters = self.filteredTags!

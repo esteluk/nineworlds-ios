@@ -12,12 +12,32 @@ import UIKit
 class DashboardController : UIViewController, NSFetchedResultsControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var emptyView: UILabel!
     
     var managedObjectContext: NSManagedObjectContext? = nil
+    var notificationObserver: NSObjectProtocol? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
+        
+        self.notificationObserver = NSNotificationCenter.defaultCenter()
+            .addObserverForName(DataManager.IMPORT_COMPLETE, object: nil, queue: NSOperationQueue.mainQueue()) { (notification: NSNotification!) -> Void in
+            
+                self.nowFetchedResultsController.performFetch(nil)
+                self.nextFetchedResultsController.performFetch(nil)
+                self.collectionView.reloadData()
+                
+                self.showEmptyView()
+        }
+        
+        self.showEmptyView()
+    }
+    
+    deinit {
+        if self.notificationObserver != nil {
+            NSNotificationCenter.defaultCenter().removeObserver(self.notificationObserver!)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -33,6 +53,17 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
             
             let dvc = segue.destinationViewController as! DetailViewController
             dvc.detailItem = object
+        }
+    }
+    
+    func showEmptyView() {
+        if self.collectionView.numberOfItemsInSection(0) == 0 &&
+            self.collectionView.numberOfItemsInSection(1) == 0 {
+                self.collectionView.hidden = true
+                self.emptyView.hidden = false
+        } else {
+            self.collectionView.hidden = false
+            self.emptyView.hidden = true
         }
     }
     
