@@ -412,7 +412,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6ru-9g-xOJ">
+                            <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6ru-9g-xOJ">
                                 <rect key="frame" x="10" y="0.0" width="580" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RBg-Fv-y5a">
@@ -447,10 +447,18 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCg-H5-nXm">
+                                                    <rect key="frame" x="0.0" y="199" width="200" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="PHp-ph-7yB"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="vCg-H5-nXm" secondAttribute="bottom" id="0VV-jn-JLR"/>
                                             <constraint firstAttribute="centerY" secondItem="Gdv-oI-YdU" secondAttribute="centerY" id="1Fk-rg-SW9"/>
                                             <constraint firstItem="Gdv-oI-YdU" firstAttribute="leading" secondItem="ntc-3l-Cwa" secondAttribute="leadingMargin" id="5y0-rB-3Sm"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="lHc-sI-n94" secondAttribute="trailing" id="8Rl-ow-32Y"/>
@@ -462,6 +470,8 @@
                                             <constraint firstItem="asR-lt-E3k" firstAttribute="top" secondItem="Gdv-oI-YdU" secondAttribute="bottom" constant="8" symbolic="YES" id="cKx-ha-0Lb"/>
                                             <constraint firstItem="lHc-sI-n94" firstAttribute="bottom" secondItem="ntc-3l-Cwa" secondAttribute="bottomMargin" id="lYJ-eS-NcP"/>
                                             <constraint firstAttribute="centerX" secondItem="Gdv-oI-YdU" secondAttribute="centerX" id="q9g-d3-vBW"/>
+                                            <constraint firstItem="vCg-H5-nXm" firstAttribute="leading" secondItem="ntc-3l-Cwa" secondAttribute="leading" id="wgk-RY-hUR"/>
+                                            <constraint firstAttribute="trailing" secondItem="vCg-H5-nXm" secondAttribute="trailing" id="yuX-i8-foe"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">

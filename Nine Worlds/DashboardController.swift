@@ -65,6 +65,7 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         switch indexPath.section {
         case 0:
             header.titleLabel.text = "On now!"
+            
             break
         case 1:
             header.titleLabel.text = "Coming up..."
@@ -75,6 +76,8 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         
         return header
     }
+    
+    // MARK: - UICollectionViewFlowLayoutDelegate
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = floor(collectionView.frame.size.width / 2) - 15
@@ -90,11 +93,22 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         let titleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(17)]
         let subtitleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(15)]
         
-        let size1 = NSString(string: object.title).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: titleAttribs, context: nil)
-        let size2 = NSString(string: object.listDetail).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: titleAttribs, context: nil)
-        let size3 = NSString(string: object.tagString).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: titleAttribs, context: nil)
+        let size1 = NSString(string: object.title).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, attributes: titleAttribs, context: nil)
+        let size2 = NSString(string: object.listDetail).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, attributes: titleAttribs, context: nil)
+        let size3 = NSString(string: object.tagString).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, attributes: titleAttribs, context: nil)
         
-        return CGSizeMake(width, size1.height + size2.height + size3.height + 8 + 32)
+        return CGSizeMake(width, size1.height + size2.height + size3.height + 8 + 24)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        if (section == 0 && collectionView.numberOfItemsInSection(section) > 0)
+            || (section == 1 && collectionView.numberOfItemsInSection(section) > 0) {
+                return CGSizeMake(collectionView.frame.width, 50)
+        }
+        
+        return CGSizeMake(collectionView.frame.width, 0)
+        
     }
     
     // NSFetchedResultsControllerDelegate

@@ -18,5 +18,17 @@ class ProgramDetailsCell: UICollectionViewCell {
         self.titleLabel.text = program.title
         self.dateLabel.text = program.listDetail
         self.tagsLabel.text = program.tagString
+        
+        self.backgroundColor = UIColor.whiteColor()
+        
+        // Set some shadows
+        self.layer.masksToBounds = false
+        self.layer.contentsScale = UIScreen.mainScreen().scale
+        self.layer.rasterizationScale = UIScreen.mainScreen().scale
+        self.layer.shadowOpacity = 0.25
+        self.layer.shadowRadius = 3.0
+        self.layer.shadowOffset = CGSizeMake(0, 2)
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).CGPath
+        self.layer.shouldRasterize = true
     }
 }
