@@ -180,6 +180,8 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
                     tableView.setEditing(false, animated: true)
                 })
                 
+                unfavouriteAction.backgroundColor = Colors.redColor()
+                
                 return [unfavouriteAction]
             } else {
                 var favouriteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Favourite") { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
@@ -188,6 +190,8 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
                     self.fetchedResultsController.managedObjectContext.save(nil)
                     tableView.setEditing(false, animated: true)
                 }
+                
+                favouriteAction.backgroundColor = Colors.redColor()
                 
                 return [favouriteAction]
             }
