@@ -96,7 +96,7 @@ public class HTMLNode {
     
     public var rawContents : String {
         if node != nil {
-            return rawContentsOfNode(self.node!, self.pointer)
+            return rawContentsOfNode(self.node!, pointer: self.pointer)
         }
         return ""
     }
@@ -107,7 +107,7 @@ public class HTMLNode {
     */
     public init(doc: htmlDocPtr = nil) {
         self.doc  = doc
-        var node = xmlDocGetRootElement(doc)
+        let node = xmlDocGetRootElement(doc)
         self.pointer = node
         self.nodeType = .HTMLUnkownNode
         if node != nil {
@@ -133,7 +133,7 @@ public class HTMLNode {
     */
     public func getAttributeNamed(name: String) -> String {
         for var attr : xmlAttrPtr = node!.properties; attr != nil; attr = attr.memory.next {
-            var mem = attr.memory
+            let mem = attr.memory
             
             if name == ConvXmlCharToString(mem.name) {
                 return ConvXmlCharToString(xmlNodeGetContent(mem.children))
@@ -317,7 +317,7 @@ public class HTMLNodeGenerator : GeneratorType {
     }
     
     public func next() -> HTMLNode? {
-        var temp = node
+        let temp = node
         node = node?.next
         return temp
     }

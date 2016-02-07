@@ -41,17 +41,23 @@ class DataManager {
     func importComplete() {
         var error: NSError?
         context.processPendingChanges()
-        if context.save(&error) {
+        do {
+            try context.save()
             let notification = NSNotification(name: DataManager.IMPORT_COMPLETE, object: nil)
             NSNotificationCenter.defaultCenter().postNotification(notification)
             
             if let parent = context.parentContext {
-                parent.save(nil)
+                do {
+                    try parent.save()
+                } catch _ {
+                }
             }
+        } catch let error1 as NSError {
+            error = error1
         }
         
         if error != nil {
-            print(error?.localizedDescription)
+            print(error?.localizedDescription, terminator: "")
         }
     }
     
@@ -61,7 +67,7 @@ class DataManager {
         let fetchRequest = NSFetchRequest(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "id == %d", idNumber)
         
-        if let fetchResults = context.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject] {
+        if let fetchResults = (try? context.executeFetchRequest(fetchRequest)) as? [NSManagedObject] {
             if fetchResults.count > 0 {
                 return fetchResults.first
             }
@@ -74,7 +80,7 @@ class DataManager {
         let fetchRequest = NSFetchRequest(entityName: entityName)
         fetchRequest.predicate = NSPredicate(format: "title == %@", title)
         
-        if let fetchResults = context.executeFetchRequest(fetchRequest, error: nil) as? [NSManagedObject] {
+        if let fetchResults = (try? context.executeFetchRequest(fetchRequest)) as? [NSManagedObject] {
             if fetchResults.count > 0 {
                 return fetchResults.first
             }

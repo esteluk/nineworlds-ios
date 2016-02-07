@@ -23,7 +23,7 @@ class Person: NSManagedObject {
         self.id = (dictionary.objectForKey("id") as! NSString).integerValue
         
         let names = dictionary.objectForKey("name") as! [String]
-        self.name = (" ").join(names)
+        self.name = names.joinWithSeparator((" "))
         
         if let bio = dictionary.objectForKey("bio") as? String {
             self.bio = bio
@@ -43,7 +43,7 @@ class Person: NSManagedObject {
     }
     
     func addProgramObject(program: Program) {
-        var items = self.mutableOrderedSetValueForKey("programItems")
+        let items = self.mutableOrderedSetValueForKey("programItems")
         items.addObject(program)
     }
 

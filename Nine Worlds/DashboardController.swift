@@ -22,10 +22,16 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         self.managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
         
         self.notificationObserver = NSNotificationCenter.defaultCenter()
-            .addObserverForName(DataManager.IMPORT_COMPLETE, object: nil, queue: NSOperationQueue.mainQueue()) { (notification: NSNotification!) -> Void in
+            .addObserverForName(DataManager.IMPORT_COMPLETE, object: nil, queue: NSOperationQueue.mainQueue()) { (notification: NSNotification) -> Void in
             
-                self.nowFetchedResultsController.performFetch(nil)
-                self.nextFetchedResultsController.performFetch(nil)
+            do {
+                try self.nowFetchedResultsController.performFetch()
+            } catch _ {
+            }
+            do {
+                try self.nextFetchedResultsController.performFetch()
+            } catch _ {
+            }
                 self.collectionView.reloadData()
                 
                 self.showEmptyView()
@@ -74,10 +80,10 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            let sectionInfo = self.nowFetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+            let sectionInfo = self.nowFetchedResultsController.sections![section] 
             return sectionInfo.numberOfObjects
         } else if section == 1 {
-            let sectionInfo = self.nextFetchedResultsController.sections![0] as! NSFetchedResultsSectionInfo
+            let sectionInfo = self.nextFetchedResultsController.sections![0] 
             return sectionInfo.numberOfObjects
         }
         
@@ -140,9 +146,9 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         let titleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(17)]
         let subtitleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(15)]
         
-        let size1 = NSString(string: object.title).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, attributes: titleAttribs, context: nil)
-        let size2 = NSString(string: object.listDetail).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, attributes: titleAttribs, context: nil)
-        let size3 = NSString(string: object.tagString).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin | NSStringDrawingOptions.UsesFontLeading, attributes: titleAttribs, context: nil)
+        let size1 = NSString(string: object.title).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading], attributes: titleAttribs, context: nil)
+        let size2 = NSString(string: object.listDetail).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading], attributes: titleAttribs, context: nil)
+        let size3 = NSString(string: object.tagString).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading], attributes: titleAttribs, context: nil)
         
         return CGSizeMake(width, size1.height + size2.height + size3.height + 8 + 24)
     }
@@ -200,7 +206,10 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         _nowFetchedResultsController = aFetchedResultsController
         
         var error: NSError? = nil
-        if !_nowFetchedResultsController!.performFetch(&error) {
+        do {
+            try _nowFetchedResultsController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             //println("Unresolved error \(error), \(error.userInfo)")
@@ -234,7 +243,10 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         _nextFetchedResultsController = aFRC
         
         var error: NSError? = nil
-        if !_nextFetchedResultsController!.performFetch(&error) {
+        do {
+            try _nextFetchedResultsController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             abort()
         }
         

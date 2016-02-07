@@ -99,9 +99,9 @@ class Program: NSManagedObject {
         }
         
         var error : NSError?
-        var parser = HTMLParser(html: self.title, error: &error)
+        let parser = HTMLParser(html: self.title, error: &error)
         if error != nil {
-            print(error)
+            print(error, terminator: "")
         }
         
         let body = parser.body
@@ -117,7 +117,7 @@ class Program: NSManagedObject {
                 self.ticketed = spanNode.contents == "Ticketed"
             default:
                 // Do nothing
-                print()
+                print("", terminator: "")
             }
             
             // remove the span from the thing
@@ -127,7 +127,7 @@ class Program: NSManagedObject {
         }
         
         // Calculate the day
-        let calendar = NSCalendar.currentCalendar().components(NSCalendarUnit.CalendarUnitDay, fromDate: self.startDate)
+        let calendar = NSCalendar.currentCalendar().components(NSCalendarUnit.Day, fromDate: self.startDate)
         self.daySection = calendar.day
         self.daySectionTitle = Program.sectionDateFormatter.stringFromDate(self.startDate)
         
@@ -169,12 +169,12 @@ class Program: NSManagedObject {
     }
     
     func addPersonObject(person: Person) {
-        var items = self.mutableOrderedSetValueForKey("people")
+        let items = self.mutableOrderedSetValueForKey("people")
         items.addObject(person)
     }
     
     func addTagObject(tag: Tag) {
-        var tags = self.mutableOrderedSetValueForKey("tags")
+        let tags = self.mutableOrderedSetValueForKey("tags")
         tags.addObject(tag)
     }
     
@@ -185,7 +185,7 @@ class Program: NSManagedObject {
             arr.append(p.title)
         }
         
-        return ", ".join(arr)
+        return arr.joinWithSeparator(", ")
     }
     
     var roomString: String {

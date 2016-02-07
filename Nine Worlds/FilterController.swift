@@ -18,7 +18,10 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
     
     // Mark - IBAction
     @IBAction func donePressed(sender: UIBarButtonItem) {
-        self.managedObjectContext?.save(nil)
+        do {
+            try self.managedObjectContext?.save()
+        } catch _ {
+        }
         
         self.parentController?.applyFilters(filteredTags)
     }
@@ -29,7 +32,10 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
             indexpaths.append(self.fetchedResultsController.indexPathForObject(tag)!)
             tag.filterSelected = false
         }
-        self.fetchedResultsController.managedObjectContext.save(nil)
+        do {
+            try self.fetchedResultsController.managedObjectContext.save()
+        } catch _ {
+        }
         self.tableView.reloadRowsAtIndexPaths(indexpaths, withRowAnimation: UITableViewRowAnimation.Automatic)
     }
     
@@ -68,7 +74,10 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
         _fetchedResultsController = aFetchedResultsController
         
         var error: NSError? = nil
-        if !_fetchedResultsController!.performFetch(&error) {
+        do {
+            try _fetchedResultsController!.performFetch()
+        } catch let error1 as NSError {
+            error = error1
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             //println("Unresolved error \(error), \(error.userInfo)")
@@ -94,7 +103,7 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
@@ -127,12 +136,12 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsController.sections![section] 
         return sectionInfo.numberOfObjects
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }

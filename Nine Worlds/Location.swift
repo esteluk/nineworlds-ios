@@ -16,7 +16,7 @@ class Location: NSManagedObject {
     @NSManaged var events: NSSet
     
     func addProgramObject(program: Program) {
-        var items = self.mutableSetValueForKey("events")
+        let items = self.mutableSetValueForKey("events")
         items.addObject(program)
     }
 

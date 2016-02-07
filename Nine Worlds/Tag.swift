@@ -18,7 +18,7 @@ class Tag: NSManagedObject {
     @NSManaged var people: NSOrderedSet
     
     func addProgramObject(program: Program) -> Void {
-        var items = self.mutableOrderedSetValueForKey("programs")
+        let items = self.mutableOrderedSetValueForKey("programs")
         items.addObject(program)
     }
 
