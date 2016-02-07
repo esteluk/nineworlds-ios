@@ -49,16 +49,19 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             
-            let indexPath = self.collectionView.indexPathsForSelectedItems()[0] as! NSIndexPath
-            var object: Program
-            if indexPath.section == 0 {
-                object = self.nowFetchedResultsController.objectAtIndexPath(indexPath) as! Program
-            } else {
-                object = self.nextFetchedResultsController.objectAtIndexPath(NSIndexPath(forItem: indexPath.row, inSection: 0)) as! Program
+            if let indexPaths = self.collectionView.indexPathsForSelectedItems() {
+                let indexPath = indexPaths[0]
+                var object: Program
+                if indexPath.section == 0 {
+                    object = self.nowFetchedResultsController.objectAtIndexPath(indexPath) as! Program
+                } else {
+                    object = self.nextFetchedResultsController.objectAtIndexPath(NSIndexPath(forItem: indexPath.row, inSection: 0)) as! Program
+                }
+                
+                let dvc = segue.destinationViewController as! DetailViewController
+                dvc.detailItem = object
             }
             
-            let dvc = segue.destinationViewController as! DetailViewController
-            dvc.detailItem = object
         }
     }
     

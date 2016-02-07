@@ -23,7 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         
         let splitViewController = (self.window!.rootViewController as! UITabBarController).viewControllers![1] as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
-        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        
+        if let topController = navigationController.topViewController {
+            topController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+        }
+        
         splitViewController.delegate = self
         splitViewController.preferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible
 

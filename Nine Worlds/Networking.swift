@@ -29,49 +29,66 @@ class Networking {
     }
     
     func getPeople() -> Void {
+        
         Alamofire.request(Router.People())
-            .responseString(encoding: NSUTF8StringEncoding)
-                { (request : NSURLRequest?, response : NSHTTPURLResponse?, data : String?, error : NSError?) -> Void in
-                // Do something
-                    if let range = data?.rangeOfString("var people = ", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) {
-                        var jsonString = data?.substringFromIndex(range.endIndex)
-                        jsonString = jsonString?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                        jsonString = jsonString?.substringToIndex(jsonString!.endIndex.predecessor())
-                        if let jsonData = jsonString?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                            var jsonResult : [NSDictionary] = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil) as! [NSDictionary]
+            .validate()
+            .responseString { response -> Void in
+                
+                if let data = response.result.value {
+                    if let range = data.rangeOfString("var people = ", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) {
+                        var jsonString = data.substringFromIndex(range.endIndex)
+                        jsonString = jsonString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        jsonString = jsonString.substringToIndex(jsonString.endIndex.predecessor())
+                        if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                            var jsonResult : [NSDictionary]
+                            do {
+                                try jsonResult = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! [NSDictionary]
+
+                                dispatch_async(self.queue, { () -> Void in
+                                    self.dataManager.peopleFromDictionary(jsonResult)
+                                })
+                            } catch _ as NSError {
+                                
+                            }
                             
-                            dispatch_async(self.queue, { () -> Void in
-                                self.dataManager.peopleFromDictionary(jsonResult)
-                            })
+                            
                             
                         } else {
                             // TODO Error
                         }
                     }
-                    
-                    // TODO Error
-        }
+                }
+            }
     }
     
     func getProgram() -> Void {
+        
         Alamofire.request(Router.Program())
-            .responseString(encoding: NSUTF8StringEncoding)
-                { (request : NSURLRequest?, response : NSHTTPURLResponse?, data : String?, error : NSError?) -> Void in
-                    if let range = data?.rangeOfString("var program = ", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) {
-                        var jsonString = data?.substringFromIndex(range.endIndex)
-                        jsonString = jsonString?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                        jsonString = jsonString?.substringToIndex(jsonString!.endIndex.predecessor())
-                        if let jsonData = jsonString?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+            .responseString { response -> Void in
+                
+                if let data = response.result.value {
+                    if let range = data.rangeOfString("var program = ", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil, locale: NSLocale.currentLocale()) {
+                        var jsonString = data.substringFromIndex(range.endIndex)
+                        jsonString = jsonString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                        jsonString = jsonString.substringToIndex(jsonString.endIndex.predecessor())
+                        if let jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
                             
                             dispatch_async(self.queue, { () -> Void in
-                                var error : NSError?
-                                let jsonResult : [NSDictionary] = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: &error) as! [NSDictionary]
+                                let jsonResult : [NSDictionary]
                                 
-                                self.dataManager.programFromDictionary(jsonResult)
+                                do {
+                                    try jsonResult = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! [NSDictionary]
+                                    
+                                    self.dataManager.programFromDictionary(jsonResult)
+                                } catch _ as NSError {
+                                    
+                                }
                             })
                             
                         }
                     }
+                }
+                
         }
     }
     
@@ -90,7 +107,7 @@ class Networking {
             }
         }
         
-        var URLRequest: NSURLRequest {
+        var URLRequest: NSMutableURLRequest {
             let url = NSURL(string: Router.baseUrlString)!
             let urlRequest = NSMutableURLRequest(URL: url.URLByAppendingPathComponent(path))
             urlRequest.HTTPMethod = "GET"

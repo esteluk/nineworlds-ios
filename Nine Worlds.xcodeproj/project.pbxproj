@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		78094430249113FA9C7268CB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16447B5788BDE68E53B232A6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		78094430249113FA9C7268CB /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16447B5788BDE68E53B232A6 /* Pods.framework */; };
 		D806B2EC1B6FE30A000529AA /* ProgramDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806B2EB1B6FE30A000529AA /* ProgramDetailsCell.swift */; };
 		D806B2EE1B6FEAF3000529AA /* ProgramHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D806B2ED1B6FEAF3000529AA /* ProgramHeader.swift */; };
 		D83E877C1B555C9B00580978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83E877B1B555C9B00580978 /* AppDelegate.swift */; };
@@ -398,7 +398,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" c0735bfe4c3be03e7d1b84ba9c55fb9f56691f76 4306fc5675d04396b50c1c71abc57928885c77fa9b63cc6c6621e939350f422d";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" c0735bfe4c3be03e7d1b84ba9c55fb9f56691f76 4306fc5675d04396b50c1c71abc57928885c77fa9b63cc6c6621e939350f422d";
 		};
 		E0F011B4AF8361B788C42006 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

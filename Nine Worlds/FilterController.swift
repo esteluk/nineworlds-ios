@@ -103,21 +103,21 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Update:
-            if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
-                self.configureCell(cell, atIndexPath: indexPath!)
-            }
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        default:
-            return
+            case .Insert:
+                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            case .Delete:
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            case .Update:
+                if let cell = tableView.cellForRowAtIndexPath(indexPath!) {
+                    self.configureCell(cell, atIndexPath: indexPath!)
+                }
+            case .Move:
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            default:
+                return
         }
     }
     
