@@ -132,11 +132,17 @@ public class HTMLNode {
     * @return 属性名
     */
     public func getAttributeNamed(name: String) -> String {
-        for var attr : xmlAttrPtr = node!.properties; attr != nil; attr = attr.memory.next {
-            let mem = attr.memory
-            
-            if name == ConvXmlCharToString(mem.name) {
-                return ConvXmlCharToString(xmlNodeGetContent(mem.children))
+        
+        if let node = node {
+            var attr : xmlAttrPtr = node.properties
+            while attr != nil {
+                let mem = attr.memory
+                
+                if name == ConvXmlCharToString(mem.name) {
+                    return ConvXmlCharToString(xmlNodeGetContent(mem.children))
+                }
+                
+                attr = attr.memory.next
             }
         }
         
@@ -289,9 +295,9 @@ public class HTMLNode {
         
         var nodes : [HTMLNode] = []
         let size = Int(nodeSet.memory.nodeNr)
-        for var i = 0; i < size; ++i {
+        for i in 0 ..< size {
             let n = nodeSet.memory
-            let node = nodeSet.memory.nodeTab[i]
+            let node = n.nodeTab[i]
             let htmlNode = HTMLNode(doc: self.doc, node: node)
             nodes.append(htmlNode)
         }

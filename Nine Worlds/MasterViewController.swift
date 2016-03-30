@@ -22,7 +22,7 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         
         let control = UISegmentedControl(items: ["All", "Favourites"])
         control.selectedSegmentIndex = 0
-        control.addTarget(self, action: "titleSegmentedClick:", forControlEvents: UIControlEvents.ValueChanged)
+        control.addTarget(self, action: #selector(MasterViewController.titleSegmentedClick(_:)), forControlEvents: UIControlEvents.ValueChanged)
         _titleSegmentedControl = control
         return _titleSegmentedControl!
     }
@@ -79,14 +79,12 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         newManagedObject.setValue(NSDate(), forKey: "timeStamp")
              
         // Save the context.
-        var error: NSError? = nil
         do {
             try context.save()
-        } catch let error1 as NSError {
-            error = error1
+        } catch _ as NSError {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            
             abort()
         }
     }
@@ -167,14 +165,11 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
             let context = self.fetchedResultsController.managedObjectContext
             context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
                 
-            var error: NSError? = nil
             do {
                 try context.save()
-            } catch let error1 as NSError {
-                error = error1
+            } catch _ as NSError {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //println("Unresolved error \(error), \(error.userInfo)")
                 abort()
             }
         }
@@ -277,7 +272,6 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
-        let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -287,15 +281,13 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
-    	var error: NSError? = nil
     	do {
             try _fetchedResultsController!.performFetch()
-        } catch let error1 as NSError {
-            error = error1
-    	     // Replace this implementation with code to handle the error appropriately.
+        } catch _ as NSError {
+             // Replace this implementation with code to handle the error appropriately.
     	     // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-             //println("Unresolved error \(error), \(error.userInfo)")
-    	     abort()
+            
+            abort()
     	}
         
         return _fetchedResultsController!
@@ -342,8 +334,6 @@ class MasterViewController: UITableViewController, FilterDelegate, NSFetchedResu
             case .Move:
                 tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            default:
-                return
         }
     }
 

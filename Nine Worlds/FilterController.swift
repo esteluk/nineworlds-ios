@@ -63,7 +63,6 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -73,14 +72,12 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
-        var error: NSError? = nil
         do {
             try _fetchedResultsController!.performFetch()
-        } catch let error1 as NSError {
-            error = error1
+        } catch _ as NSError {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            
             abort()
         }
         
@@ -116,8 +113,6 @@ class FilterController : UIViewController, NSFetchedResultsControllerDelegate, U
             case .Move:
                 tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-            default:
-                return
         }
     }
     

@@ -52,7 +52,7 @@ class DetailViewController: UIViewController {
                 self.updateFavouriteButton(button, programItem: detail)
             }
             
-            if let scrollview = self.scrollView {
+            if let scrollView = self.scrollView {
                 scrollView.hidden = false
             }
             

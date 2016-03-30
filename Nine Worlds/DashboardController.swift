@@ -147,7 +147,7 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         }
         
         let titleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(17)]
-        let subtitleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(15)]
+//        let subtitleAttribs = [NSFontAttributeName: UIFont.systemFontOfSize(15)]
         
         let size1 = NSString(string: object.title).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading], attributes: titleAttribs, context: nil)
         let size2 = NSString(string: object.listDetail).boundingRectWithSize(CGSizeMake(textWidth, CGFloat.max), options: [NSStringDrawingOptions.UsesLineFragmentOrigin, NSStringDrawingOptions.UsesFontLeading], attributes: titleAttribs, context: nil)
@@ -177,7 +177,7 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
     
     var nextPredicate: NSPredicate? {
         let now = NSDate()
-        let future = NSDate(timeInterval: 90 * 60, sinceDate: now)
+//        let future = NSDate(timeInterval: 90 * 60, sinceDate: now)
         return NSPredicate(format: "startDate > %@", now)
     }
     
@@ -198,7 +198,6 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         
         // Edit the sort key as appropriate.
         let sortDescriptor = NSSortDescriptor(key: "startDate", ascending: true)
-        let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -208,14 +207,12 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         aFetchedResultsController.delegate = self
         _nowFetchedResultsController = aFetchedResultsController
         
-        var error: NSError? = nil
         do {
             try _nowFetchedResultsController!.performFetch()
-        } catch let error1 as NSError {
-            error = error1
+        } catch _ as NSError {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            //println("Unresolved error \(error), \(error.userInfo)")
+            
             abort()
         }
         
@@ -245,11 +242,9 @@ class DashboardController : UIViewController, NSFetchedResultsControllerDelegate
         aFRC.delegate = self
         _nextFetchedResultsController = aFRC
         
-        var error: NSError? = nil
         do {
             try _nextFetchedResultsController!.performFetch()
-        } catch let error1 as NSError {
-            error = error1
+        } catch _ as NSError {
             abort()
         }
         
